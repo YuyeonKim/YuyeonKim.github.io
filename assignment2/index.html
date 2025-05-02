@@ -5,20 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!--favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+
     <!--font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet">
-    <!-- add the font family of your choice -->
+
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
-  </head>
+    </head>
   <body>
     <!-- Header Section -->
     <header>
@@ -28,52 +24,100 @@
     <!-- Navigation Section -->
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Timer</a></li>
-        <li><a href="#">Music</a></li>
-        <!-- Add or remove navigation items as needed -->
+        <li><a href="#section1">Home</a></li>
+        <li><a href="#section2">Music</a></li>
+        <li><a href="#section3">Tips</a></li>
+        
       </ul>
     </nav>
 
-  <!--page layout-->
   <div class="slides">
     <section class="parallax" id="section1">
         <div class="study-content">
             <h1>Study With Me</h1>
-            <p>Listen to relaxing study music and keep a track of your study hours!</p>
+            <div style="margin-bottom: 40px;">
+            </div>
+            <p>Listen to relaxing study music and learn new study tips!</p>
         </div>
     </section>
 
     <section class="parallax" id="section2">
         <div class="study-content">
             <h1>Cram & Jam</h1>
+            <div style="margin-bottom: 40px;">
+            </div>
             <h2>Let's see how many times you can listen to this music on repeat while focusing!</h2>
         </div>
-            <!-- Main Content Section -->
     <main class="container">
-        <!-- Media Player Section -->
-        <div class="media-player">
-            <audio src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Water-Feature.mp3" controls id="water-audio">
-              </audio>
-              <button id="play-button"> Play</button>
-              <button id="pause-button">Pause</button>
-            </div>
-          </div>
+
+<audio src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Water-Feature.mp3" id="my-audio"></audio>
+
+             <!--music-->
+             <div class="media-player">
+
+                <audio 
+                  id="water-audio" 
+                  src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Water-Feature.mp3" 
+                  controls>
+                </audio>
+              
+                <!-- Control buttons -->
+                <button id="play-button">Play</button>
+                <button id="pause-button">Pause</button>
+              
+    
+              
+                <!-- Fast Forward Button -->
+                <button id="fast-forward-button">
+                  <img 
+                    src="https://img.icons8.com/ios-filled/24/000000/fast-forward.png" 
+                    alt="Fast Forward" 
+                    id="fast-forward-img"
+                  />
+
+                <!--Steps button -->
+                  <button id="step1-button">1</button>
+                  <button id="step2-button">2</button>
+                  <button id="step3-button">3</button>
+                </button>
+              
+              </div>
+              
         </div>
+
     </section>
 
     <section class="parallax" id="section3">
         <div class="study-content">
-            <h1>Timer</h1>
-            <p>Tick Tick!</p>
+            <div style="margin-bottom: 200px;">
+            </div>
+            <h1>Study Tips</h1>
+            <div style="margin-bottom: 40px;">
+            </div>
+            <h4>Here are some tips for studying
+                <div style="margin-bottom: 20px;">
+                </div>
+                <li>Get rid of every distraction around you.</li>
+                <div style="margin-bottom: 10px;">
+                </div>
+                <li>List out your goals for the study session.</li>
+                <div style="margin-bottom: 10px;">
+                </div>
+                <li>Listen to calming music to enhance your focus.</li>
+                <div style="margin-bottom: 10px;">
+                </div>
+                <li>Space out your break time to minimise lose of motivation.</li>
+            </h4>
+            <div style="margin-bottom: 200px;">
+            </div>
         </div>
     </section>
         </div>
     </main>
-
+    Yuyeon_Kim s4101278
     <!-- Footer Section -->
     <footer>
-      <h3>&copy; 2024 Media Player Website. All rights reserved.</h3>
+      <h5>&copy; 2024 Media Player Website. All rights reserved.</h5>
       <a href="https://icons8.com/icon/59862/play">Play</a> icon by
       <a href="https://icons8.com">Icons8</a>
       <a href="https://icons8.com/icon/61012/pause">Pause</a> icon by
