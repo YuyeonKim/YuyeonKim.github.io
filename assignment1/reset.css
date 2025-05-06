@@ -11,15 +11,3 @@ h6 {
 p {
   color: #bb2828;
 }
-
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.image-container img {
-  max-width: 100%;
-  height: auto;
-}

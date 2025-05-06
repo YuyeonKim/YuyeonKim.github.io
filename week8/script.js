@@ -121,7 +121,7 @@ console.log(heartButton);
 
 let likes = 0;
 
-const likesContainer = document.querySelector("#likes");
+const likesContainer = document.querySelector("#likes-container");
 console.log(likesContainer);
 //listen to click on this button
 heartButton.addEventListener("click", updatelikes);

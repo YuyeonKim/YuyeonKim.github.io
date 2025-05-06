@@ -8,14 +8,67 @@
 
 body,
 h1,
-p,
 ul {
+  font-family: "Cascadia Mono", monospace;
+  font-style: italic;
   margin: 0;
   padding: 0;
 }
 
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-family: "Cascadia Mono", monospace;
+  font-style: italic;
+  width: 400px;
+  display: flex;
+  justify-content: center; /* horizontal */
+  align-items: center; /* vertical */
+
+  margin: 0 auto;
+  height: 100px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: rgb(75, 75, 66);
+  opacity: 80%;
+  border-radius: 5px;
+}
+
+h4 {
+  font-family: "Cascadia Mono", monospace;
+  font-style: italic;
+  width: 600px;
+
+  margin: 0 auto;
+  height: 275px;
+  margin-bottom: 20px;
+  background-color: rgb(75, 75, 66);
+  opacity: 80%;
+  padding: 20px;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 5px;
+}
+
+p {
+  width: 400px;
+  /* border: 1px solid rgba(220, 20, 60, 0.378); */
+  margin: 0 auto;
+  height: 100px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: rgb(75, 75, 66);
+  opacity: 80%;
+  border-radius: 5px;
+}
+
+p {
+  font-family: "Cascadia Mono", italic;
+}
+
 body {
-  font-family: "Arial", sans-serif;
   background-color: var(--primary-bg-color);
   /* color: var(--text-color); */
   line-height: 1.6;
@@ -24,8 +77,6 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-
-/* Add additional styles as needed */
 
 /* Create a container for the main content */
 .container {
@@ -36,11 +87,12 @@ body {
 
 /* Header styling */
 header {
-  background-color: var(--main-bg-color);
+  background-color: rgb(95, 111, 55);
   color: var(--main-text-color);
-  padding: 10px 0;
+  padding: 15px 0;
   text-align: center;
   width: 100%;
+  font-size: xx-large;
 }
 
 /* Navigation styling */
@@ -61,6 +113,7 @@ html {
 .parallax {
   position: relative;
   height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,17 +126,22 @@ html {
   color: white;
   text-align: center;
   padding: 20px;
-  background-color: rgba (0, 0, 0, 0);
+  background-color: black;
   max-width: 80%;
+  border-radius: 20px;
 }
 
 /*sectioning*/
-section {
-  background-image: url("Background.png");
+#section1 {
+  background-image: url("Background1.png");
 }
 
-section {
-  background-image: url("Background.png");
+#section2 {
+  background-image: url("Background2.png");
+}
+
+#section3 {
+  background-image: url("Background3.png");
 }
 
 nav ul {
@@ -107,17 +165,25 @@ nav a {
 .media-player {
   width: 100%;
   margin: 0 auto;
+  font-family: "Cascadia Mono", monospace;
+  font-size: x-large;
 }
 
-.media-player video {
-  max-width: 100%;
+.media-player audio {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .custom-controls {
+  flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 10px;
   width: 100%;
 }
@@ -133,20 +199,19 @@ nav a {
   align-items: center;
 }
 
-.progress-bar {
-  width: 100%;
-  height: 10px;
-  background-color: #ddd;
-  margin-top: 10px;
-  overflow: hidden;
+button {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 2rem;
+  color: black;
+  /* color: rgb(202, 151, 122); */
+  border-radius: 12px;
+  background-color: rgba(212, 198, 116, 0.8);
 }
 
-.progress-bar span {
-  display: block;
-  height: 100%;
-  background-color: var(--main-bg-color);
-  width: 0;
-  transition: width 0.3s ease;
+button:hover {
+  scale: 0.5;
+  background-color: rgba(215, 153, 72, 0.4);
 }
 
 /* Footer styling */
