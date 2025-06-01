@@ -1,0 +1,43 @@
+/*----basic screen layout---*/
+body {
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-around;
+}
+
+#reset-button {
+  margin: auto;
+  align-items: center;
+  width: 15vw;
+  height: 4vh;
+  font-size: 1rem;
+}
+
+#result-header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 30px;
+  color: aliceblue;
+  padding: 20px 10px;
+  margin: -170px;
+}
+
+.game-screen {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 10px;
+}
+
+.card {
+  background-color: black;
+  height: 174px;
+  width: 125px;
+}
