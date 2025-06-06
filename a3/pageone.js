@@ -3,3 +3,4 @@ console.log(memoryGameButton);
 memoryGameButton.addEventListener("click", function () {
   location.href = "index.html";
 });
+// leads to the main game page javascript

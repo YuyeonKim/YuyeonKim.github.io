@@ -1,3 +1,146 @@
+// last js code refined by chatGPT (order, format, naming)
+const startButton = document.querySelector("#start-button");
+const gameScreen = document.querySelector("#game-screen");
+const welcomeScreen = document.querySelector("#welcome-screen");
+const resetButton = document.querySelector("#reset-button");
+
+// button functions
+startButton.addEventListener("click", () => {
+  scrollToGameScreen();
+  playGame(); // Start fresh game
+});
+
+resetButton.addEventListener("click", () => {
+  playGame(); // Re-shuffle and reset game
+  scrollToGameScreen();
+});
+
+function scrollToGameScreen() {
+  const newTop = gameScreen.offsetTop;
+  window.scrollTo({ top: newTop, behavior: "smooth" });
+}
+
+// CARD list
+const cardFaces = [
+  "card1.jpeg",
+  "card2.jpeg",
+  "card3.jpeg",
+  "card4.jpeg",
+  "card5.jpeg",
+  "card6.jpeg",
+  "card7.jpeg",
+  "card8.jpeg",
+];
+
+// duplicate of cards to match
+const myCards = [...cardFaces, ...cardFaces];
+
+// SHUFFLE utility
+function shuffleArray(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function playGame() {
+  const cardContainer = document.querySelector(".card-container");
+  cardContainer.innerHTML = ""; // Clear previous cards
+
+  const shuffledCards = shuffleArray(myCards);
+
+  // Create card HTML
+  shuffledCards.forEach((src, index) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.setAttribute("draggable", "true");
+    card.setAttribute("data-index", index);
+
+    card.innerHTML = `
+      <div class="card-face front">
+        <img src="backofthecard.jpg" alt="Back of card" />
+      </div>
+      <div class="card-face back">
+        <img src="${src}" alt="Card image" />
+      </div>
+    `;
+
+    cardContainer.appendChild(card);
+  });
+  // extra shuffling functions to randomise position
+  randomiseCardPosition(); //
+  initMemoryGame();
+}
+
+function randomiseCardPosition() {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => {
+    const randomPos = Math.floor(Math.random() * 100);
+    card.style.order = randomPos;
+  });
+}
+
+// card flip back to original when they do not match
+function initMemoryGame() {
+  const cards = Array.from(document.querySelectorAll(".card"));
+  let hasFlippedCard = false;
+  let lockBoard = false;
+  let firstCard, secondCard;
+
+  function flipCard() {
+    if (lockBoard || this === firstCard) return;
+
+    this.classList.add("flip");
+
+    if (!hasFlippedCard) {
+      hasFlippedCard = true;
+      firstCard = this;
+      return;
+    }
+
+    secondCard = this;
+    checkForMatch();
+  }
+
+  function checkForMatch() {
+    const firstImg = firstCard.querySelector(".back img").src;
+    const secondImg = secondCard.querySelector(".back img").src;
+
+    if (firstImg === secondImg) {
+      disableCards();
+    } else {
+      unflipCards();
+    }
+  }
+
+  function disableCards() {
+    firstCard.removeEventListener("click", flipCard);
+    secondCard.removeEventListener("click", flipCard);
+    resetBoard();
+  }
+
+  function unflipCards() {
+    lockBoard = true;
+    setTimeout(() => {
+      firstCard.classList.remove("flip");
+      secondCard.classList.remove("flip");
+      resetBoard();
+    }, 1000);
+  }
+
+  function resetBoard() {
+    [hasFlippedCard, lockBoard] = [false, false];
+    [firstCard, secondCard] = [null, null];
+  }
+
+  cards.forEach((card) => card.addEventListener("click", flipCard));
+}
+
+// --------------------------------------
+// trial and error
+
 // const startButton = document.querySelector("#start-button");
 // console.log(startButton);
 // startButton.addEventListener("click", startGame);
@@ -291,141 +434,3 @@
 
 //   cards.forEach(card => card.addEventListener("click", flipCard));
 // }
-
-const startButton = document.querySelector("#start-button");
-const gameScreen = document.querySelector("#game-screen");
-const welcomeScreen = document.querySelector("#welcome-screen");
-const resetButton = document.querySelector("#reset-button");
-
-startButton.addEventListener("click", () => {
-  scrollToGameScreen();
-  playGame(); // Start fresh game
-});
-
-resetButton.addEventListener("click", () => {
-  playGame(); // Re-shuffle and reset game
-  scrollToGameScreen();
-});
-
-function scrollToGameScreen() {
-  const newTop = gameScreen.offsetTop;
-  window.scrollTo({ top: newTop, behavior: "smooth" });
-}
-
-// CARD DATA
-const cardFaces = [
-  "card1.jpeg",
-  "card2.jpeg",
-  "card3.jpeg",
-  "card4.jpeg",
-  "card5.jpeg",
-  "card6.jpeg",
-  "card7.jpeg",
-  "card8.jpeg",
-];
-
-// DUPLICATE CARDS FOR MATCHING
-const myCards = [...cardFaces, ...cardFaces];
-
-// SHUFFLE UTILITY
-function shuffleArray(array) {
-  const arr = [...array];
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-function playGame() {
-  const cardContainer = document.querySelector(".card-container");
-  cardContainer.innerHTML = ""; // Clear previous cards
-
-  const shuffledCards = shuffleArray(myCards);
-
-  // Create and inject card HTML
-  shuffledCards.forEach((src, index) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    card.setAttribute("draggable", "true");
-    card.setAttribute("data-index", index);
-
-    card.innerHTML = `
-      <div class="card-face front">
-        <img src="backofthecard.jpg" alt="Back of card" />
-      </div>
-      <div class="card-face back">
-        <img src="${src}" alt="Card image" />
-      </div>
-    `;
-
-    cardContainer.appendChild(card);
-  });
-
-  randomiseCardPosition(); // ✅ Randomly place cards using CSS
-  initMemoryGame();
-}
-
-// ✅ Randomise card layout using CSS order property
-function randomiseCardPosition() {
-  const cards = document.querySelectorAll(".card");
-  cards.forEach((card) => {
-    const randomPos = Math.floor(Math.random() * 100);
-    card.style.order = randomPos;
-  });
-}
-
-function initMemoryGame() {
-  const cards = Array.from(document.querySelectorAll(".card"));
-  let hasFlippedCard = false;
-  let lockBoard = false;
-  let firstCard, secondCard;
-
-  function flipCard() {
-    if (lockBoard || this === firstCard) return;
-
-    this.classList.add("flip");
-
-    if (!hasFlippedCard) {
-      hasFlippedCard = true;
-      firstCard = this;
-      return;
-    }
-
-    secondCard = this;
-    checkForMatch();
-  }
-
-  function checkForMatch() {
-    const firstImg = firstCard.querySelector(".back img").src;
-    const secondImg = secondCard.querySelector(".back img").src;
-
-    if (firstImg === secondImg) {
-      disableCards();
-    } else {
-      unflipCards();
-    }
-  }
-
-  function disableCards() {
-    firstCard.removeEventListener("click", flipCard);
-    secondCard.removeEventListener("click", flipCard);
-    resetBoard();
-  }
-
-  function unflipCards() {
-    lockBoard = true;
-    setTimeout(() => {
-      firstCard.classList.remove("flip");
-      secondCard.classList.remove("flip");
-      resetBoard();
-    }, 1000);
-  }
-
-  function resetBoard() {
-    [hasFlippedCard, lockBoard] = [false, false];
-    [firstCard, secondCard] = [null, null];
-  }
-
-  cards.forEach((card) => card.addEventListener("click", flipCard));
-}
