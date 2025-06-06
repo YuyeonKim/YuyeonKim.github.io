@@ -1,108 +1,213 @@
-/*----basic screen layout---*/
-body {
-  background-image: url("background.png");
-  background-repeat: no-repeat;
-  background-size: 100vw 100vh;
+h1{
+  font-size: 4rem;
+  color: aliceblue;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#button-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh; /* Full viewport height */
   text-align: center;
-  margin: auto;
+}
+
+#button-container h1 {
+  margin-bottom: 20px; /* Space between heading and button */
+}
+
+#memory-game {
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+/*----------------------*/
+
+#welcome-screen {
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  align-items: center;
+  min-width: 100vw;
+  height: 100vh;
+  scroll-behavior: smooth;
+  background-repeat: no-repeat;
+  /* background-size: 100vw 100vh; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("background1.png");
   color: aliceblue;
+  font-size: 25px;
+}
+
+#game-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 100vw;
+  height: 100vh;
+  scroll-behavior: smooth;
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  background-image: url("background.png");
+  color: aliceblue;
+  font-size: 25px;
 }
 
 #result-header {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  font-size: 30px;
+  padding: 15px 0px 0px 0px;
+}
+
+.info {
+  background-color: rgba(0, 0, 0, 0.623);
+  padding: 20px;
+  border-radius: 12px;
   color: aliceblue;
-  padding: 20px 10px;
-  margin: -170px;
 }
 
-#reset-button {
-    display: flex;
-    justify-content: center;
-    font-size: 20px;
-    text-align: center;
+section {
+  flex-direction: column;
+  /* min-width: 100vw; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.grid-container {
-    display: grid;
-    justify-content: center;
-    grid-gap: 16px;
-    grid-template-columns: repeat(4,auto);
-    grid-template-rows: repeat(4,auto);
+/* .deck {
+  display: flex;
+  gap: 20px;
+} */
+
+.card-container {
+  width: auto;
+  height: 100vh;
+  /* text-align: center; */
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  grid-template-columns: repeat(4, 90px); /* Fix: added missing 2nd argument */
+  grid-template-rows: repeat(4, 100px); /* Optional: 'auto' or '1fr' */
+  row-gap: 28px;
+  column-gap: 35px;
+  /* padding: 0px 0px 0px 0px; */
+  max-width: 100px;
+  margin: -10%;
 }
+
+/* .dropbox {
+  border: 1px dashed #e5e5cb30;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.856);
+} */
 
 .card {
-    width: 100%;
-    height: 100%;
-    cursor: grab;
-    position: relative;
-    transition: rotate 0.8s ease;
-    transform-style: preserve-3d;
-    /* this is important the flip wont work without preserve-3d */
-  }
+  /* width: 100vw;
+  height: 100vh; */
+  /* width: 100%; */
+  /* aspect-ratio: 2 / 3; */
+  cursor: grab;
+  position: relative;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+  /* this is important the flip wont work without preserve-3d */
+  /* border-radius: 12px; */
+  /* align-items: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  display: grid; */
+  /* /* box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6); */
+  /* grid-template-columns: repeat(4, 50px); Fix: added missing 2nd argument */
+  /* grid-template-rows: repeat(4, 50px);   Optional: 'auto' or '1fr' */
+  /* row-gap: 80px;
+  column-gap: 40px;
+  padding: 90px;
+  max-width: 100px;
+  margin: 0 auto; */
 
-  .front-image {
-    width: 60px;
-    height: 60px;
-  }
-  /* .flip{
-    rotate: y 180deg;
-  } */
-
-  .front,
-  .back {
-    backface-visibility: hidden;
-    position: absolute;
-    border-radius: 10px;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-  }
-
-  .card .front {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotateY(180deg);
-  }
-
-  .card .back {
-    background-image:"card1.jpeg";
-    
-  }
-
-/* header {
-    grid-column: 1 / -1;
-}
-
-.game-container {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-gap: 10px;
-  margin: 50px;
   justify-content: center;
 }
 
-.card {
-  background-color: black;
-  height: 100px;
-  width: 85px;
+.card:hover {
+  transform: scale(0.98);
+}
+
+.card-face {
+  position: absolute;
+  /* width: 100%; */
+  /* height: 100px; */
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.card-face img {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+.card-face.front {
+  justify-content: center;  
+}
+
+.card-face.back {
+  transform: rotateY(180deg);
+}
+
+.flip {
+  rotate: y 180deg;
+}
+
+#cover {
+  cursor: pointer;
+  transition: scale 0.4s ease;
+}
+
+#cover:hover {
+  scale: 1.1;
+}
+
+/* footer {
+  display: flex;
+  justify-content: center;
+color: aqua;
 } */
 
-/* .deck{
-        width: 90vw;
-        height: 100vh;
-        margin: 10px auto 10px auto ; 
-    }
-    .image-container {
-        grid-template-columns: repeat(4, auto);
-        grid-gap: 10px;
-        margin: 50px;
-        justify-content: center;
-    } */
+.reset-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+}
+
+#reset-button {
+  justify-content: center;
+  font-size: 20px;
+  padding: 10px 20px;
+}
+
+button {
+  background-color: #f8aad6;
+  padding: 5px 20px;
+  font-size: 1.4rem;
+  border-radius: 12px;
+  border: none;
+  color: #281027;
+  transition: scale 0.4s ease, background-color 0.4s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  scale: 0.9;
+  background-color: #8d587f9c;
+}
+
+body {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
